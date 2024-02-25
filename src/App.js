@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+import Todo from "./components/Todo";
+import Footer from "./components/Footer";
 
 function App() {
+  let tasks = [
+    {
+      no: 1,
+      task: "Buy groceries",
+      time: "12:00 PM",
+    },
+    {
+      no: 2,
+      task: "Complete homework",
+      time: "04:00 PM",
+    },
+    {
+      no: 3,
+      task: "Clean room",
+      time: "06:00 AM",
+    },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header title="Todo List" searchBar={true} />
+      <Todo tasks={tasks} />
+      <Footer />
+    </>
   );
 }
 
