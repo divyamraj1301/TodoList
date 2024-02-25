@@ -2,9 +2,33 @@ import "./App.css";
 import Header from "./components/Header";
 import Todo from "./components/Todo";
 import Footer from "./components/Footer";
+import { useState } from "react";
+import AddTasks from "./components/AddTasks";
 
 function App() {
-  let tasks = [
+  const onDelete = (todo) => {
+    console.log("On delete button", todo);
+
+    setTasks(
+      tasks.filter((e) => {
+        return e !== todo;
+      })
+    );
+  };
+
+  const addTodo = (task, time) => {
+    console.log("Add todo function called", task, time);
+    let no = tasks[tasks.length - 1].no + 1;
+    const newTask = {
+      no: no,
+      task: task,
+      time: time,
+    };
+    setTasks([...tasks, newTask]);
+    console.log(newTask);
+  };
+
+  const [tasks, setTasks] = useState([
     {
       no: 1,
       task: "Buy groceries",
@@ -20,12 +44,14 @@ function App() {
       task: "Clean room",
       time: "06:00 AM",
     },
-  ];
+  ]);
 
   return (
     <>
       <Header title="Todo List" searchBar={true} />
-      <Todo tasks={tasks} />
+      <AddTasks addTodo={addTodo} />
+      <Todo tasks={tasks} onDelete={onDelete} />
+
       <Footer />
     </>
   );
