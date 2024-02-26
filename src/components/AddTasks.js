@@ -7,8 +7,11 @@ const AddTasks = ({ addTodo }) => {
     e.preventDefault();
     if (!task || !time) {
       alert("Please fill out all fields");
+    } else {
+      addTodo(task, time);
+      setTask("");
+      setTime("");
     }
-    addTodo(task, time);
   };
   return (
     <div className="container my-4">
@@ -39,7 +42,6 @@ const AddTasks = ({ addTodo }) => {
             onChange={(e) => {
               setTime(e.target.value);
             }}
-            cla
             className="form-control"
             id="exampleInputPassword1"
           />
