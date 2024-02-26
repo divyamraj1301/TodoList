@@ -4,6 +4,8 @@ import Todo from "./components/Todo";
 import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 import AddTasks from "./components/AddTasks";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import About from "./components/About";
 
 function App() {
   let initTasks;
@@ -46,12 +48,23 @@ function App() {
   }, [tasks]);
 
   return (
-    <>
+    <Router>
       <Header title="Todo List" searchBar={true} />
-      <AddTasks addTodo={addTodo} />
-      <Todo tasks={tasks} onDelete={onDelete} />
+      <Routes>
+        <Route
+          path="/"
+          exact
+          element={
+            <>
+              <AddTasks addTodo={addTodo} />
+              <Todo tasks={tasks} onDelete={onDelete} />
+            </>
+          }
+        />
+        <Route path="about" element={<About />} />
+      </Routes>
       <Footer />
-    </>
+    </Router>
   );
 }
 
